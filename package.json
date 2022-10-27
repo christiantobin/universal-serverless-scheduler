@@ -1,14 +1,14 @@
 {
-    "name": "template",
+    "name": "universal-serverless-scheduler",
     "version": "0.0.0",
-    "description": "this is a template I use for the start of all my typescript programs",
+    "description": "",
     "main": "jest.config.js",
     "scripts": {
         "test": "jest --coverage",
         "create": "node dist/infra/createSQSQueue.js"
     },
     "keywords": [],
-    "author": "",
+    "author": "christiantobin",
     "license": "ISC",
     "dependencies": {
         "@types/node": "^17.0.41",

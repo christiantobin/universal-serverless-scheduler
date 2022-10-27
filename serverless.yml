@@ -35,6 +35,12 @@ functions:
         handler: src/lambda/extract.handler
         environment:
             SCHEDULE_TABLE: !Sub ${ScheduleTable.Arn}
+        events:
+            - schedule:
+                  rate: rate(15 minutes)
+                  enabled: true
+                  input:
+                      projects: ["0"]
 
 resources:
     Resources:
