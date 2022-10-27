@@ -1,0 +1,12 @@
+.idea
+.idea/*
+.serverless
+node_modules
+.vscode
+.build
+build
+dist
+static
+coverage
+src/test
+src/template

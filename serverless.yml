@@ -1,0 +1,53 @@
+service: scheduler
+
+plugins:
+    - serverless-aws-documentation
+    - serverless-webpack
+    - serverless-plugin-bind-deployment-id
+
+custom:
+    namespace: scheduler-${self:provider.stage}
+    config: ${file(env/${self:provider.stage}-${self:provider.region}.yml)}
+    deploymentId:
+        variableSyntax: ApiGatewayDeployment
+    webpack:
+        includeModules: true
+        excludeFiles: "*.test.js"
+        webpackConfig: "webpack.config.js"
+    region:
+        dev: us-west-2
+        test: us-east-1
+        staging: us-east-1
+        prod: us-east-1
+
+package:
+    individually: false
+
+provider:
+    name: aws
+    runtime: nodejs16.x
+    stage: ${opt:stage, 'dev'}
+    region: ${self:custom.region.${self:provider.stage}}
+    timeout: 30
+
+functions:
+    extract:
+        handler: src/lambda/extract.handler
+        environment:
+            SCHEDULE_TABLE: !Sub ${ScheduleTable.Arn}
+
+resources:
+    Resources:
+        ScheduleTable:
+            Type: AWS::DynamoDB::Table
+            Properties:
+                AttributeDefinitions:
+                    - AttributeName: project
+                      AttributeType: S
+                    - AttributeName: sk
+                      AttributeType: S
+                KeySchema:
+                    - AttributeName: project #pk
+                      KeyType: HASH
+                    - AttributeName: sk #sk
+                      KeyType: RANGE

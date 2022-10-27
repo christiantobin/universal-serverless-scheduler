@@ -1,0 +1,36 @@
+{
+    "name": "template",
+    "version": "0.0.0",
+    "description": "this is a template I use for the start of all my typescript programs",
+    "main": "jest.config.js",
+    "scripts": {
+        "test": "jest --coverage",
+        "create": "node dist/infra/createSQSQueue.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@types/node": "^17.0.41",
+        "ts-node": "^10.8.1",
+        "typescript": "^4.7.3"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.16.0",
+        "@babel/preset-env": "^7.16.4",
+        "@babel/preset-typescript": "^7.16.0",
+        "@types/jest": "^27.0.2",
+        "aws-sdk": "^2.1150.0",
+        "babel-jest": "^27.4.4",
+        "fork-ts-checker-webpack-plugin": "^7.2.11",
+        "jest": "^27.3.1",
+        "serverless-aws-documentation": "^1.1.0",
+        "serverless-plugin-bind-deployment-id": "^2.0.3",
+        "serverless-pseudo-parameters": "^2.6.1",
+        "serverless-webpack": "^5.7.1",
+        "ts-jest": "^27.0.7",
+        "ts-loader": "^9.3.0",
+        "webpack": "^5.73.0",
+        "webpack-node-externals": "^3.0.0"
+    }
+}
